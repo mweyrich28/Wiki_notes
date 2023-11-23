@@ -1,0 +1,12 @@
+# VORLESUNGEN
+- [Genexpression und Regulation](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/1. Semester/Biologie/Folien/Genexpression_und_Genregulation_final.pdf)
+- [Genregulation](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/1. Semester/Biologie/Folien/Generegulation-Mutationen-Molekulare-Medizin_KURZ.pdf)
+- [Moleküle des Lebens](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/1. Semester/Biologie/Folien/BioNF_Lecture2_Makromoleküle_Des_Lebens.pdf)
+- [Menschliche Zelle](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/1. Semester/Biologie/Folien/Folien der VL3 - Zellen als Grundelemente, Membranen.pdf)
+- [Energie](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/1. Semester/Biologie/Folien/Folien der VL4 - Energie.pdf)
+- [Genomik - Sequenzierung](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/1. Semester/Biologie/Folien/Genomik_Sequenzierung.pdf)
+- [Vererbung 1](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/1. Semester/Biologie/Folien/Molekulare_Grundlagen_der_Vererbung_I_KURZ.pdf):
+- [Vererbung 2](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/1. Semester/Biologie/Folien/Molekulare_Grundlagen_der_Vererbung_II - continued_KURZ.pdf)
+- [Evolution](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/1. Semester/Biologie/Folien/Grundlagen zur Evolution, Population und Artbildung.pdf)
+- [Phylogenie](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/1. Semester/Biologie/Folien/Folien VL 12 Phylogenie_Klassification_Biodiversität 2023.pdf)
+- [Sexuelle Selektion](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/1. Semester/Biologie/Folien/VL 13 Sexuelle Selektion.pdf)

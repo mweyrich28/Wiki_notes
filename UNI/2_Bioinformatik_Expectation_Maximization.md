@@ -1,0 +1,176 @@
+# Sequence logos
+:sequence_logos:entropy:relative_entropy:information_content:
+I) Vl →  [Slides](file:///home/malte/OneDriver/01_Studium/2.Semester/Einführung in die Bioinformatik II/Slides/Bioinf2-Lect07_Expectation_Maximization.pdf)
+II) Tutorium Slides: [Slides](file:///home/malte/OneDriver/01_Studium/2.Semester/Einführung in die Bioinformatik II/Tutorien/6_Ex_EiB2_expectation_maximizationstudents.pptx.pdf)
+- Any aligned set of DNA, RNA, or protein sequences can be represented as a sequence logo.
+*Concentration of following information into a single graphic:*
+1. The *general consensus* (= Übereinstimmung) of the sequences.
+	- The letters representing the four nucleotides or twenty amino acids (AAs) are stacked on top of each other.
+2. The *order of predominance* of the residues at every position.
+3. The *relative frequencies* of every residue at every position.
+4. The *amount of information present at every position in the sequence*, measured in bits.
+5. An *initiation point*, cut point, or other *significant location*
+
+## How to create a sequence logo
+We can calculate it:
+- L = length of the sequence
+- K = number of unique letters (= 4 for DNA, 20 for protein)
+- $P_{ij}$ = probability of position i being letter j
+- ($i \in \{1,..,L\}, j \in \{1,..,K\}$) 
+- *Entropy:* $H(P_{i}) = - \sum_{j=1}^{K} P_{ij} \cdot log_{2} (P_{ij})$ (genau wie in der HA die Formel)
+    - $H(P_{i})$ = 0 if all letters are the same
+    - $H(P_{i})$ = max, if frequencies of each AA/base are equal
+    - *DOES NOT TAKE IN BACKGROUND FREQUENCY OF K*
+- *Information content of pos i:* $I(P_{i}) = \log_{2}|K|-H(P_{i})$ →  This is the bit value that 
+- defines the stack height of a sequence logo position i (aka. y axis)
+- *Relative Entropy:* $H(P_{i}|\pi) = - \sum_{j}^{K} \log_{2}(\frac{P_{ij}}{\pi_{j}})$
+    - $\pi_{j} =$ background frequency of letter j
+    - *TAKES IN BACKGROUND FREQUENCY OF K*
+- *Contribution of a residue:* $P_{ij} \cdot I(P_{i})$:
+    - Heights of residues in a logo are proportional to their contributions
+    - Stack height is proportional to the relative entropy
+    - Colors highlight different properties of different AAs
+- We can determine the *range of the bits-scale (aka. height of y axis):*
+	- $\log_{2}(K)$:
+		- *DNA:* 2 bits
+		- *Protein:* 4.3 bits ~ 4 bits
+
+# Sequence Motif Discovery
+:sequence_motif_discovery:motif_discovery:
+
+## Sequence motifs
+:motif:
+- short, reoccurring patterns in DNA that are presumed to have a biological function
+- often indicate binding sites for proteins such as nucleases and transcription factors (TFs)
+- A *protein sequence motif* is a set of *conserved* amino acid residues that are important for the function of 
+  the protein and are located within a certain distance from each other
+
+## Gene Knockout
+:gene_knockout:
+- Process of creating a genetically engineered organism in which one or more genes have been 
+  turned off by replacing it with an artificial piece of DNA (these genes are called *knockout genes*)
+
+*WHY?*
+- to see _co-expressed genes_:
+	- they are most likely to be _influenced by that TF_
+- sequence upstream of them is likely to contain a _binding site for that TF_
+- can be used to find the most _prominent motif_
+
+*PROBLEM:*
+- not all co-regulated genes possess the same binding site
+- moifs can be slightly different
+- position of binding site relative to gene can vary
+- Given: a set of long sequence likely to contain a short conserved motif
+- Task: find the most prominent motif
+
+### Planted motif problem
+:planted_motif_problem:
+- (L,d)-motif: a motif of *length L* that occurs in each of the *s sequences* with at most *d mutations* 
+- Given: a *set S of sequences* of *length n*, (d < L < n)
+- Wanted: A pattern M, such in each sequence of S there's a substring 
+  which can be transformed to M with at most d mutations: ![Picture](/home/malte/01_Documents/vimwiki/Assets/2.Semester/Bioinformatik/EM/planted_motive_problem.png)
+- Score(M) := Sum of edit distances of all substrings to M
+
+#### Different problem formulations
+1. Find *exactly one motif*
+2. In every upstream region, the motif needs to occur 
+   *at least once,* 
+   *exactly once or*
+   *at most once* in "most" of the sequences
+3. Motives *with/without gaps*
+
+## Approaching the Planted Motif Problem
+:planted_motif_problem_approaches:em:expectation_maximization:
+- Brute force →  Very bad:
+  $\mathcal{O}(4^{L}mnd)$ →  impossible for long sequences
+	- L := length of motif
+	- m := number of sequences
+	- n := length of sequences
+	- d := number of mutations
+
+### Expectation Maximization Algorithm
+:expectation_maximization:
+
+![EM Algorithmus 1. Schritt bei Münzwurf](/home/malte/01_Documents/vimwiki/Assets/2.Semester/Bioinformatik/EM/em_gn.jpg)
+→  Es gibt keine Garantie, dass sie Lösung die man findet die beste ist
+
+#### Using EM for Motif Discovery
+##### Assumptions
+- *All sequences have the same length W*
+- *Motif* is generated by a probability function
+- Background is generated by a *different* probability function (Background = Rauschen, das was wir ausserhalb der Motifs in der DNA sehen)
+Unknown parameters:
+- Position of motif in the different sequences
+- Motif itself →  we have to find the parameters of the probability function
+
+##### How it works
+→  EM is used to estimate unknown parameters (motif position & probability matrix)
+![PWM](/home/malte/01_Documents/vimwiki/Assets/2.Semester/Bioinformatik/EM/pwm.png) 
+given measured data (sequences & background)
+
+1. Start with guessing the starting position of the motif $Z^{(0)}$:  
+	- 0 column: background probability
+	- other columns: probability for motif positions
+2. With that guess, calculate/derive the first motif representation $\theta^{(0)}$
+![Step 1 & 2](/home/malte/01_Documents/vimwiki/Assets/2.Semester/Bioinformatik/EM/first_step.png)
+3. Use the motif model to update the position likelihoods $Z^{(n+1)}$ (E-step): ![Step 3](/home/malte/01_Documents/vimwiki/Assets/2.Semester/Bioinformatik/EM/second_step.png):
+	- ... results in →  ![Step 3.1](/home/malte/01_Documents/vimwiki/Assets/2.Semester/Bioinformatik/EM/second_step_2.png)
+4. Use these likelihoods to update the motif model $\theta^{(n+1)}$ (M-step):
+	- ... results in →  ![Step 4](/home/malte/01_Documents/vimwiki/Assets/2.Semester/Bioinformatik/EM/second_step_3.png)
+	- ... results in →  ![Step 4.1](/home/malte/01_Documents/vimwiki/Assets/2.Semester/Bioinformatik/EM/second_step_4.png)
+5. Repeat steps 3 and 4 until convergence
+
+Tutorium Slide 47-48: Das sind 2 unterschiedliche Matrizen zu den selben Sequenzen!
+- Das rote Fenster schieben wir einmal über jede Sequenz, wir berechnen dann auch immer:
+	- P(Background (vor motif)) x P(motif) x P(Background (nach motif))
+- Wenn wir das für jede Position in allen Sequenzen gemacht haben, können wir das Modell anpassen: ![Picture](/home/malte/01_Documents/vimwiki/Assets/2.Semester/Bioinformatik/EM/second_step_3.png)
+- Dann wird das neue Modell berechnet: ![Picture](/home/malte/01_Documents/vimwiki/Assets/2.Semester/Bioinformatik/EM/second_step_4.png)
+- Dann fangen wir wieder von vorne an
+
+ANWENDUNG:
+- Clustering of gene expression data
+- Motif search 
+- Haplotype inference
+- Learning protein domain profiles or RNA families
+- Protein identification
+
+PROBLEME:
+- If the letter probability of one letter is 0, the whole probability is 0
+- EM can be trapped in local maxima
+- There has to be exactly one motif in each sequence
+- We can't find more than one motif
+- We can't include previous knowledge
+
+## MEME
+:meme:motif_em:expectation_maximization:
+
+*EXTENSIONS*
+- inclusion of *pseudo count* to avoid zero probabilities
+- *Looking for a good starting position* for the motif:
+	- Starting Motif has to be as similar as possible to actual motif
+	- For every distinct subsequence of length W:
+		- Calculate the model
+		- *Run just one EM step*
+	- Now choose the best model with highest likelihood
+- *Prior knowledge* can be included
+
+## Gibbs Sampling
+:gibbs_sampling:
+
+*FURTHER EXTENSIONS*
+- Makes greater use of random search →  reduces probability of getting stuck in local maxima
+- We try different starting positions for the motif in each sequence
+- EM runs parallel
+- Main differences:
+	- In EM we kept a distribution for the starting position of the motif
+	- In Gibbs sampling we assign a specific starting position to each sequence, 
+	  but we will randomly re-sample these starting positions
+There's still no optimal solution for this problem
+
+### Gibbs Sampling Algorithm
+1. Choose initial guess of motif positions
+2. Derive the model from these locations
+3. Choose a random sequence:
+	1. Calculate likelihood of all possible motif starting positions 
+4. Randomly choose a motif position from the probability distribution
+5. Repeat steps 2 and 4 until convergence
