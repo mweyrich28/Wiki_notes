@@ -13,6 +13,7 @@
 - *AI:* https://www.perplexity.ai/
 - *Sharp:* https://shap.readthedocs.io/en/latest/
 - *ROLLING SLIDE DECK:* https://docs.google.com/presentation/d/1nXOvPpPtJtgAs2bgqxKO1nhkzBcqYnZnUvY9FQuEK6U/edit#slide=id.g24e36ff07fb_2_536
+- *ROSALIND:* https://rosalind.info/classes/1003
 
 # Notes
 - [PBL_Multiclass_CNN_Notes](PBL_Multiclass_CNN_Notes)

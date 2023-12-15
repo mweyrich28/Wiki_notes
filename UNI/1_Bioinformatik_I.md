@@ -10,6 +10,7 @@
 - [Phasing](1_Bioinformatik_Phasing)
 - [Genome_Wide_Association_Studies](1_Bioinformatik_Genome_Wide_Association_Studies)
 - [Quantitative_Traits](1_Bioinformatik_Quantitative_Traits) 
+- [ZSM](file:///home/malte/OneDriver/01_Studium/1.Semester/Bioinformatik_1/Lect10_summary.pdf)
 
 ## Epigenetics
 - [Epigenetigs](file:///home/malte/01_Documents/vimwiki/Assets/Bioinformatik/Epigenetics/epi.pdf)

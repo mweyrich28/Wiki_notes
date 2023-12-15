@@ -11,6 +11,10 @@
 [Enzym Kinetik](3_BioChem_Enzym_Kinetik)
 [Glycolyse](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/3. Semester/Biochemie/Slides/BC2-04_Schaeffner_Glycolyse-WS23-24.pdf)
 [Gluconeogenese und Citratzyklus](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/3. Semester/Biochemie/Slides/BC2-05_Schaeffner_Gluconeogenese_Citrat-WS23-24.pdf)
+[Oxidative Phosphorylierung](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/3. Semester/Biochemie/Slides/BC2-06_Oxid-Phosphoryl_WS23-24.pdf)
+[Photosynthese](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/3. Semester/Biochemie/Slides/BC2-07_Photosynthese_WS23-24.pdf)
+[Nukleotid Synthese](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/3. Semester/Biochemie/Slides/BC2-08_Schaeffner_Nukleotide_WS23-24.pdf)
+[Fettsynthese](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/3. Semester/Biochemie/Slides/BC2_231211.pdf)
 
 # Nacharbeitung Vorlesung
 [BioChem 2 Nacharbeitung](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/3. Semester/Biochemie/Nacharbeitung Vorlesung.pdf)
