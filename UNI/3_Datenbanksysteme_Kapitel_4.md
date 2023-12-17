@@ -1,5 +1,5 @@
-# Slides - Relationen Kalkül
-[Datenbanken Relationen Kalkül](file:///home/malte/OneDriver/01_Studium/3.Semester/Datenbanken/Slides/dbs1_04.pdf)
+# Kapitel 4 - Relationen Kalkül
+**SLIDES:** [Datenbanken Relationen Kalkül](file:///home/malte/OneDriver/01_Studium/3.Semester/Datenbanken/Slides/dbs1_04.pdf)
 
 ## Begriff
 Mathematische Prädikatenlogik kann verwendet werden um Datenbankabfragen zu formulieren.
@@ -298,7 +298,7 @@ WHERE NOT EXISTS (
 - Einschränkung:
 	- Subquery darf nur ein Ergebnis-Attribut ermitteln 
 	- Aber mehrere Tupel sind erlaubt
-	- →  Also Menge und nicht Relation
+	- → Also Menge und nicht Relation
 
 **Beispiel: Ermittle den Kunde mit dem höchsten Kontostand:**
 ```sql
@@ -366,7 +366,7 @@ Nach dem Ausdruck <span style="color:#cc241d;">$A_{i} \textbf{ [NOT] } in \dots$
 	`SELECT ... FROM ... WHERE EXISTS (SELECT * FROM ...)`
 
 - Bei `SOME`, `ANY`, `ALL` und `IN` ist das Ergebnis der Subquery
-  eine Menge von Werten (→  Ein Attribut mehrerer Tupel), die in die Hauptquery eingesetzt werden:
+  eine Menge von Werten (→ Ein Attribut mehrerer Tupel), die in die Hauptquery eingesetzt werden:
   - Deshalb muss in der **Subquery**eine Projektion durchgeführt werden: 
 	`SELECT A FROM ... WHERE A <=  ALL (SELECT B FROM ...)`
 

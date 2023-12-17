@@ -1,5 +1,5 @@
-**SLIDES:**
-[Datenbanken Relationale Algebra](file:///home/malte/OneDriver/01_Studium/3.Semester/Datenbanken/Slides/dbs1_03.pdf)
+# Kapitel 3 - Relationale Algebra
+**SLIDES:** [Datenbanken Relationale Algebra](file:///home/malte/OneDriver/01_Studium/3.Semester/Datenbanken/Slides/dbs1_03.pdf)
 
 # Anfragesprachen
 Wichtigste Bespiele:

@@ -1,4 +1,4 @@
-# Das Relationale Datennmodell
+# Kapitel 2 - Das Relationale Datennmodell
 **Slides**: [Datenbanken Kapitel 2](file:///home/malte/OneDriver/01_Studium/3.Semester/Datenbanken/Slides/dbs1_02.pdf)
 
 ## Domain Definition

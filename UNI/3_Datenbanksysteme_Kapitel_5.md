@@ -1,5 +1,5 @@
-# Slides - Sortieren, Gruppieren und views in SQL
-[Datenbanken 5](file:///home/malte/OneDriver/01_Studium/3.Semester/Datenbanken/Slides/dbs1_05.pdf)
+# Kapitel 5 - Sortieren, Gruppieren und Views in SQL
+**SLIDES:** [Datenbanken 5](file:///home/malte/OneDriver/01_Studium/3.Semester/Datenbanken/Slides/dbs1_05.pdf)
 
 ## Sortieren
 - In SQL mit `ORDER BY`-Klausel:

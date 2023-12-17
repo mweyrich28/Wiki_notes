@@ -1,5 +1,5 @@
-# Slides
-[Datenbanken Einführung](file:///home/malte/OneDriver/01_Studium/3.Semester/Datenbanken/Slides/dbs1_01.pdf)
+# Kapitel 1 - Einführung
+**Slides:** [Datenbanken Einführung](file:///home/malte/OneDriver/01_Studium/3.Semester/Datenbanken/Slides/dbs1_01.pdf)
 
 ## Arbeitsspeicher vs. Externspeicher
 

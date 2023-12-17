@@ -489,3 +489,14 @@ same params as v3
     accuracy                           0.72      2762
    macro avg       0.66      0.65      0.64      2762
 weighted avg       0.76      0.72      0.73      2762
+
+
+# Params for each FNN:
+## Level 0
+best_units = {'num_units_dense_1': 202, 'dropout_rate_1': 0.06940982765055399, 'num_units_dense_2': 35}
+
+## Level 1
+best_params = {'num_units_dense_1': 168, 'dropout_rate_1': 0.07889805610819639, 'num_units_dense_2': 43}
+
+## Level 2
+best_params = {'num_units_dense_1': 262, 'dropout_rate_1': 0.06908699888382129, 'num_units_dense_2': 121}
