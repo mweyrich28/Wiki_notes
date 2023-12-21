@@ -15,6 +15,7 @@
 [Photosynthese](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/3. Semester/Biochemie/Slides/BC2-07_Photosynthese_WS23-24.pdf)
 [Nukleotid Synthese](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/3. Semester/Biochemie/Slides/BC2-08_Schaeffner_Nukleotide_WS23-24.pdf)
 [Fettsynthese](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/3. Semester/Biochemie/Slides/BC2_231211.pdf)
+[Cholesterin Synthese](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/3. Semester/Biochemie/Slides/BC2_231218.pdf)
 
 # Nacharbeitung Vorlesung
 [BioChem 2 Nacharbeitung](file:///home/malte/OneDriver/03_GoodNotes_Backup/01_Studium/3. Semester/Biochemie/Nacharbeitung Vorlesung.pdf)

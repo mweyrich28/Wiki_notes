@@ -44,6 +44,7 @@
 
 ### Wiederholung Sensitivity, Specificity, Accuracy, Precision, Recall, F1-Score, PPV, NPV
 :recall:precision:accuracy:sensitivity:specificity:f1_score:ppv:npv:tp:tn:fp:fn:
+https://en.wikipedia.org/wiki/Receiver_operating_characteristic
 
 #### SENSITIVITY/RECALL
 $$

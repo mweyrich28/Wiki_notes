@@ -210,8 +210,7 @@ Folgende Konstrukte sind in Views erlaubt:
 - Gruppierung und Aggregation
 - Die verschiedenen Arten von Subqueries
 
-Nicht erlaubt sind:
-- Sortierung
+> :warning: **Warning:** Nicht erlaubt sind: **Sortierung**
 
 ### Insert, Delete, Update auf Views
 **Logische Datenunabhängigkeit**:
