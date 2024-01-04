@@ -27,12 +27,12 @@ ${toc}
   dann muss auch `LLand` gleich sein
 
 **→ Redundanzen durch funktionale Abhängigkeit**
-> :eight_spoked_asterisk: **Definition:** Wir sagen:
 > Die Attribute `LName`, `LStadt` und `LLand` sind ***funktional abhängig*** vom Attribut `LNr` 
 > (eben so `LLand` von `LStadt`)
 
 → Redundanzen führen zu Speicherplatzverschwendung
 
+:def:dbs:anomalien:
 > :eight_spoked_asterisk: **Definition:** **Anomalien** (Inkonsistenz durch Änderungsoperationen)
 
 > :memo: **Note:** Das eigentliche Problem sind *Anomalien* und dass das Schema
@@ -79,8 +79,6 @@ Anomalien entstehen durch Redundanzen
 - Schrittweises Zerlegen des gegebenen Schemas (Normalisierung) in ein 
   äquivalentes Schema ohne Redundanzen und Anomalien
   
-> :eight_spoked_asterisk: **Definition:** **Funktionale Ahängigkeit**:
-> Formalisierung von Redundanz und Anomalien
 
 # Funktionale Abhängigkeit (functional dependency, FD)
 - beschreibt Beziehungen zwischen den Attributen zweier Relationen
@@ -121,6 +119,7 @@ $$
 $$
 
 ## Funktionale Abhängigkeit
+:def:dbs:funktionale_abhängigkeit:
 > :eight_spoked_asterisk: **Definition:** ***Funktionale Abhängigkeit***
 > 
 > Gegeben:
@@ -131,6 +130,7 @@ $$
 $$
 (X \to Y) \iff  \operatornamewithlimits{\forall}_{\text{Tupel }t \land r}: t.X = r.X \implies t.Y = r.Y
 $$
+> Formalisierung von Redundanz und Anomalien
 
 → Bsp:
 
@@ -149,9 +149,10 @@ und *Funktionaler Abhängigkeit*:
   
   **→ Alle Attribute der Relation sind von S funktional Abhängig (wegen der Eindeutigkeit):** $S \to R$
 
-- > :eight_spoked_asterisk: **Definition:** ***Superschlüssel***
-  > 
-  > Jede Menge, von der $R$ funktional Abhängig ist, ist ein **Superschlüssel**
+:def:dbs:superschlüssel:
+> :eight_spoked_asterisk: **Definition:** ***Superschlüssel***
+> 
+> Jede Menge, von der $R$ funktional Abhängig ist, ist ein **Superschlüssel**
 
 **Unterschied:**
 - Aber es gibt u.U. weitere funktionale Abhängigkeiten: 
@@ -167,9 +168,193 @@ Wie der Schlüssel ist auch die funktionale Abhängigkeit eine **Semantische Eig
 - FD nicht aus aktueller DB-Ausprägung entscheidbar
 - sondern muss für alle möglichen Ausprägungen gelten
 
+:def:dbs:primattribut:prim:
 > :eight_spoked_asterisk: **Definition:** ***Prime Attribute***
 > 
 > Ein Attribut heißt **prim**, wenn es Teil eines Schlüsselkandidaten ist
 
 
-## Patielle und volle Funktionale Abhängigkeit
+## Partielle und volle Funktionale Abhängigkeit
+
+Ist ein Attribut $B$ funktional von $A$ abhängig,
+dann auch von jeder Obermenge von $A$.
+
+**→ Man ist interresiert, minimale Mengen zu finden, von denen**
+$B$ **abhängt** (Schlüsseldefinition)
+
+:def:dbs:partielle_funktionale_abhängigkeit:voll_funktionale_abhängigkeit:
+> :eight_spoked_asterisk: **Definition:** 
+>
+> - Gegeben: Eine funktionale Abhängigkeit $X \to Y$
+> - Wenn es keine echte Teilmenge $X'$ von $X$ gibt, so dass $X' \to Y$ gilt 
+>   dann heißt $X \to Y$ **voll funktional Abhängig** ($X$ $\cdot \atop \to$ $Y$)
+> - **Anderenfalls eine partielle funktionale Abbhängigkeit**
+
+Beispiel:
+
+![3_DBS_7_Funktionale_Abhängigkeit_Bsp_2](/home/malte/01_Documents/Vimwiki_md/UNI/SCREENSHOTS/3_DBS_7_Funktionale_Abhängigkeit_Bsp_2.png)
+
+### Volle FD vs Minimalität des Schlüssels
+> :warning: **Warning:** Definitionen sind sehr ähnlich:
+
+**Schlüssel:** Minimale Menge, die Eindeutigkeit erfüllt
+
+**Volle FD:** Minimale Menge, von der ein Attribut abhängt 
+(und die Eindeutigkeit ist äquivalent zur FD)
+
+> :warning: **Warning:** Aus der Minimalität des Schlüssels folgt **nicht**, dass alle Attribute
+> (immer) voll funktional Abhängig sind!!!
+
+> :memo: **Note:** Unterschied der beiden liegt im Allquantor (der in den Definitionen verschieden ist):
+	> - **Schlüssel:** Minimale Menge, von der alle Attribute funktional Abhängig sind
+	> - **Volle FD** $X$ $\cdot \atop \to$ $Y$ **:** Für jedes Attribut $A \in Y$ gilt:
+	>   $X$ ist die minimale Menge von der $A$ funktional Abhängig ist
+
+# Herleitung von funktionaler Abhängigkeiten
+
+## Armstrong-Axiome
+:def:dbs:armstrong_axiome:
+> :eight_spoked_asterisk: **Definition:** ***Reflexivität (R):***
+> 
+> Falls $Y$ eine Teilmenge von $X$ ist ($Y \subseteq X$), denn gilt immer $X \to Y$
+> 
+> **Insbesondere:** $X \to X$
+
+> :eight_spoked_asterisk: **Definition:** ***Verstärkung (VS):***
+> 
+> Falls $X \to Y$ gilt, dann gilt auch $XZ \to YZ$, wobei $XZ \equiv X \cup Z$
+
+> :eight_spoked_asterisk: **Definition:** ***Transitivität (T):***
+> 
+> Falls $X \to Y$ und $Y \to Z$ gilt, dann gilt auch $X \to Z$
+
+→ Diese Axiome sind **vollständig und korrekt**:
+
+Sei $F$ eine Menge von FDs:
+- Es lassen sich nur FDs von $F$ ableiten, die von jeder 
+  relationalen Ausprägung erfüllt werden, für die auch $F$ erfüllt ist
+- Es sind alle FDs ableitbar, die durch $F$ impliziert sind
+
+> :eight_spoked_asterisk: **Definition:** ***Triviale funktionale Abhängigkeit:***
+> 
+> Wegen **Reflexivität** ist jedes Attribut funktional Abhängig:
+> - von sich selbst
+> - von jeder Obermenge von sich selbst
+> 
+> → Solche Abhängigkeiten heißen **trivial**
+
+> :eight_spoked_asterisk: **Definition:** ***Symmetrieeigenschaften von funktionaler Abhängigkeit:***
+> 
+> Bei der funktionalen Abhängigkeit gibt es kein Gesetz zur Symmetrie oder Antisymmetrie, d.h. 
+> bei zwei beliebigen Attribut-(Mengen) $X,Y$ sind alle 4 Fälle möglich:
+> - Es gilt nur $X \to Y$
+> - Es gilt nur $Y \to X$
+> - Es gilt $X \to Y$ und $Y \to X$
+> - Es gibt keine funktionale Abhängigkeit zwischen $X$ und $Y$
+
+## Hülle einer Attributmenge
+- **Eingabe:** eine Menge $F$ von FDs und eine Attributmenge $X$
+- **Ausgabe:** die vollständige Menge von Attributen $X^{+}$, für die gilt: $X \to X^{+}$
+
+```
+AttrHülle(F,X)
+    Erg := X
+	while (Änderung an Erg) do
+	    foreach FD Y -> Z in F do
+		    if Y subset(Erg) then
+			   Erg := Erg union(Z)
+	Ausgabe X+ = Erg
+```
+Beispiel: AttrHülle(F, {LNr}) mit:
+- $F = \left\{LNr \to LName; LNr \to LStadt; LStadt \to LLand; LNr, Ware \to Preis\right\}$
+- $Erg_{i}$ = $Erg$ nach $i$-ter Iteration der `while`-Schleife
+- $Erg_{0}= \{LNr\}$
+- $Erg_{1}= \{LNr, LName, LStadt\}$
+- $Erg_{2}= \{LNr, LName, LStadt, LLand\}$
+- $Erg_{3}= \{LNr, LName, LStadt, LLand\} = Erg_{2}$
+
+## Weitere Regeln zu funktionaler Abhängigkeit
+> :eight_spoked_asterisk: **Definition:** ***Vereinigungsregel (VE):***
+> 
+> Falls $X \to Y$ und $X \to Z$ gilt, dann gilt auch $X \to YZ$
+
+> :eight_spoked_asterisk: **Definition:** ***Dekompositionsregel (D):***
+> 
+> Falls $X \to YZ$ gilt, dann gilt auch $X \to Y$ und $X \to Z$
+
+> :eight_spoked_asterisk: **Definition:** ***Pseudotransitivitätsregel (P):***
+> 
+> Falls $X \to Y$ und $ZY \to V$ gilt, dann gilt auch $XZ \to V$
+
+![3_DBS_7_Herleitung_funk_Abh_Bsp_1](/home/malte/01_Documents/Vimwiki_md/UNI/SCREENSHOTS/3_DBS_7_Herleitung_funk_Abh_Bsp_1.png)
+
+![3_DBS_7_Herleitung_funk_Abh_Bsp_2](/home/malte/01_Documents/Vimwiki_md/UNI/SCREENSHOTS/3_DBS_7_Herleitung_funk_Abh_Bsp_2.png)
+
+
+# Normalisierung
+:def:dbs:normalform:normalisierung:
+→ In einem Relationenschema sollen also möglichts keine funktionalen Abhängigkeiten auftreten,
+**außer vom gesamten Schlüssel**
+
+→ Verschiedene Normalformen beseitigen unterschiedliche Arten von funktionalen Abhängigkeiten bzw. Redundanzen/Anomalien
+
+→ Herstellung einer Normalform durch *Verlustlose* Zerlegung des Schemas in mehrere Schemata
+
+## 1. Normalform
+> :eight_spoked_asterisk: **Definition:** ***1. Normalform***
+> - Keine Einschränkung bezüglich der FDs
+> - Ein Relationenschema ist in 1. Normalform, wenn alle Attributwerte **atomar** sind
+> - In relationalen Datenbanken sind nicht-atomare Attribute nicht erlaubt/nicht möglich
+> - Nicht-atomare Attribute z.B. durch `GROUP BY`:
+	> ![3_DBS_7_1_Normalform_Bsp_1](/home/malte/01_Documents/Vimwiki_md/UNI/SCREENSHOTS/3_DBS_7_1_Normalform_Bsp_1.png)
+
+## 2. Normalform
+> :eight_spoked_asterisk: **Definition:** ***2. Normalform***
+> 
+> Ein Schema ist in zweiter Normalform, wenn jedes Attribut entweder:
+> - voll funktional Abhängig von **allen** Schlüsselkandidaten ist
+> - oder ein Primattribut ist (Teil eines Schlüssels)
+> 
+> *Motivation:* Vermeidung von Redundanzen: Man möchte verhindern, dass Attribute
+> nicht vom gesamten Schlüssel voll funktional Abhängig sind, sondern nur von einem Teil davon:
+	> ![3_DBS_7_2_Normalform_Bsp_1](/home/malte/01_Documents/Vimwiki_md/UNI/SCREENSHOTS/3_DBS_7_2_Normalform_Bsp_1.png)
+> 
+> → Dies fordert man vorerst nur für Nicht-Schlüssel-Attribute
+
+z.B.: Kann 2. Normalform verletzt sein, wenn ...
+- ... ein zusammengesetzter Schlüssel (-Kandidat) existiert
+- ... und wenn nicht-prime Attribute existieren
+
+### Zur Transformation in 2. Normalform spaltet man das Rel Schema auf:
+- Attribute, die **voll funktional abhängig** von Schlüssel sind, bleiben in der 
+  Ursprungsrelation $R$
+- Für alle Abhängigkeiten $X_{i} \to Y_{i}$ von einem Teil eines Schlüssels 
+  $(X_{i} \not \subseteq S)$ geht man folgendermaßen vor:
+  1. Lösche die Attribute $Y_{i}$ aus $R$ 
+  2. Gruppiere die Abhängigkeiten nach gleichen linken Seiten $X_{i}$
+  3. Für jede Gruppe führe eine neue Relation ein mit allen erhaltenen Attributen aus $X_{i}$ und $Y_{i}$
+  4. $X_{i}$ wird Schlüssel in der neuen Relation
+
+![3_DBS_7_2_Normalform_Bsp_2](/home/malte/01_Documents/Vimwiki_md/UNI/SCREENSHOTS/3_DBS_7_2_Normalform_Bsp_2.png)
+
+![3_DBS_7_2_Normalform_Bsp_3](/home/malte/01_Documents/Vimwiki_md/UNI/SCREENSHOTS/3_DBS_7_2_Normalform_Bsp_3.png)
+
+## 3. Normalform
+> :eight_spoked_asterisk: **Definition:** ***3. Normalform***
+> 
+> Ein Relationenschema ist in der 3. Normalform, **wenn für jede nicht triviale**
+> **funktionale Abhängigkeit** $X \to A$ **gilt:**
+> - $X$ enthält einen Schlüsselkandidaten
+> - oder $A$ ist prim
+> 
+> *Motivation:* Man möchte zusätzlich verhindern, dass Attribute von nicht-primen Attributen
+> funktional abhängig sind
+> 
+> ![3_DBS_7_3_Normalform_Bsp_1](/home/malte/01_Documents/Vimwiki_md/UNI/SCREENSHOTS/3_DBS_7_3_Normalform_Bsp_1.png)
+> 
+> **Abhängigkeit von Nicht-Schlüssel-Attribut** bezeichnet man häufig auch als
+> *transitive* (Armstrong-Axiome) *Abhängigkeit* vom Primärschlüssel:
+> - $\underline{LNr} \to LStadt \to LLand$, also indirekt $\underline{LNr} \to LLand$
+
+**Anmerkung zur 3. NF:**
+- Wider Beschränkung auf FDs, bei denen die rechte Seite nicht prim ist

@@ -42,3 +42,25 @@ CLEAN: https://www.science.org/doi/10.1126/science.adf2465
 - 1 info per slide
 - Not show test data set just say the twst and trainig datasets are similar in terms of statistical characteristocs
 - Plot partial values of clean pubication for sota comparison 
+
+
+
+# 2023-12-21
+TODO für Slides:
+- Which dataset will be merged with non enzymes? → For binary classification → New dataset?
+- CLEAN performance on NEW dataset has only one score but we don't know on which level
+- CLEAN was trained only on enzymes? Our models were trained on non enzymes & enzymes
+- Was CLEAN trained on SPLIT100?
+- Should we just use ECpred/DeepEC as SOTA comparison?
+- How much information do we need to give on the chosen test dataset?
+- How important are the error bars for CLEAN since it will most certainly outperform our models by a lot?
+
+
+# Fragen
+- Wir haben gzip knn auf undersampeled data trainiert, aber die baseline nimmt die gesamten datenmenge?
+
+
+# ToDo für Report
+%% TODO: define MCC score
+%% TODO: define F1 score
+%% TODO: define knn

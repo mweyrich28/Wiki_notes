@@ -22,3 +22,6 @@
 
 # ZOOM Übung
 https://app.zoom.us/wc/69691476439/join?from=pwa&wpk=wcpk%7B0%7D%26%26%26%26wcpk8ef4228b39c3611b18378ad11c66c783&fromPWA=1
+
+
+[Gylkolyse_InShort](3_GylkolyseInShort)
