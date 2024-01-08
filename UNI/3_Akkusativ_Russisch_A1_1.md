@@ -8,5 +8,9 @@
 
 Я → Ich
 Ты → Du
-вы → Sie
+он/она/оно → Er/Sie/Es
+
+мы → Wir
+вы → Ihr/Sie
+они → Sie
 

@@ -1,3 +1,8 @@
+----
+:genitiv_ru:
+----
+
+
 # Genitiv Russisch A1.1 
 → Wann benutze ich Genitiv:
 - Von irgendwo herkommen
@@ -10,8 +15,8 @@ Beispiel:
 
 ## Maskulinum
 Genitiv **Endungen:**
-- **я** → Bei Weichheitszeichen
-- **а** → Bei Konsonant
+- **я** → Bei Weichheitszeichen (ь) oder й
+- **а** → Bei Konsonant 
 
 **Wann ist eine Stadt maskulin?**
 > Wort endet auf: **Konsonant/ь/й**
@@ -21,6 +26,8 @@ Vorgehen: Die Endung des Wortes (also den letzten Buchstaben streichen und auf d
 Genitiv **Endungen:**
 - **и** → Wenn Wortstamm auf **Zischlaut/г/к/х** endet 
 - **ы** → sonst
+- :warning: wenn Wort auf **ия** endet → **ии** (Sonderregel)
+
 > :warning: **Warning:** **ц** ist kein Zischlaut
 
 **Wann ist eine Stadt feminin?**
@@ -33,7 +40,6 @@ Genitiv **Endungen:**
 **Wann ist eine Stadt neutrum?**
 > Wort endet auf: **о/е** 
 
-
-> :warning: **Warning:** Diese Regeln gelten v.a für slawische/russische Städte.
-> Städte aus anderen Ländern bleiben unverändert.
+> :warning: **Warning:** Viele nicht russsiche Städte- und Ländernamen, die auf einen Vokal
+> (außer unbeontes **а**) auslauten, sind unveränderlich.
 

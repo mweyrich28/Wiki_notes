@@ -1,3 +1,9 @@
+----
+
+:glycolyse:biochemie:
+
+----
+
 # Glykolyse
 ## Abfolge der 10 Reaktionen
 `Glucose`

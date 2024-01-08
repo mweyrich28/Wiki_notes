@@ -19,3 +19,8 @@
 [Blatt 06](file:///home/malte/OneDriver/01_Studium/3.Semester/Datenbanken/Tutor_Lsg/DBSTut_Tut_06_20231204.pdf)
 [Blatt 07](3_DBS_Tutorium_07)
 [Blatt 08](3_DBS_Tutorium_08)
+
+
+# Notes
+[Normalisierung](Normalisierung)
+[Funktionale Abhängigkeit](Funktionale Abhängigkeit)

@@ -15,6 +15,7 @@
 **ROLLING SLIDE DECK:** https://docs.google.com/presentation/d/1nXOvPpPtJtgAs2bgqxKO1nhkzBcqYnZnUvY9FQuEK6U/edit#slide=id.g24e36ff07fb_2_536
 **ROSALIND:** https://rosalind.info/classes/1003
 CLEAN: https://www.science.org/doi/10.1126/science.adf2465
+TRUC REPORT: https://docs.google.com/document/d/1pPLVQxp9Ut4bZC9vd8bMaInSURhLbw1IqDKZqZsxNSY/edit
 
 # Notes
 [PBL_Multiclass_CNN_Notes](PBL_Multiclass_CNN_Notes)
@@ -57,10 +58,16 @@ TODO für Slides:
 
 
 # Fragen
+## Validation
+- Sollen test daten auch \ge 1022 sein?
+- weighted F1 score ausrechnen für FNN statt micro oder nochmal fragen
+- Für multiclass: soll ich nochmal alles ohne non enzymes trainieren?
+## Paper
+- Fragen wegen website citing → einmal IUBMB und mass table
+- Wie detailliert sollen wir embeddings einleiten/erklären esm2 vs ProtT5
+- Quellen angabe zu den scores?
+- Unwanted sections in large latex template
+- Bootstrapping explanation? alpha + iterations etc.
 - Wir haben gzip knn auf undersampeled data trainiert, aber die baseline nimmt die gesamten datenmenge?
-
-
-# ToDo für Report
-%% TODO: define MCC score
-%% TODO: define F1 score
-%% TODO: define knn
+- Homology based inference → muss ich das erklären? Und zitieren? Und ist das schon richtig so?
+- Wenn wri weitere ansätze in Supplemental Material packen, müssen diese dann auch in methods erklärt werden oder werden in methods nur die ethods erwähnt, die auch in der Discussion sind?

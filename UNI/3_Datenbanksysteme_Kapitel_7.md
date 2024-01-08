@@ -296,7 +296,12 @@ Beispiel: AttrHülle(F, {LNr}) mit:
 → In einem Relationenschema sollen also möglichts keine funktionalen Abhängigkeiten auftreten,
 **außer vom gesamten Schlüssel**
 
-→ Verschiedene Normalformen beseitigen unterschiedliche Arten von funktionalen Abhängigkeiten bzw. Redundanzen/Anomalien
+→ Verschiedene Normalformen beseitigen unterschiedliche Arten von funktionalen Abhängigkeiten bzw. Redundanzen/Anomalien:
+- 1. Normalform
+- 2. Normalform → 1. Normalform
+- 3. Normalform → 2. Normalform
+- Boyce-Codd Normalform (BCNF) → 3. Normalform
+- 4. Normalform → BCNF
 
 → Herstellung einer Normalform durch *Verlustlose* Zerlegung des Schemas in mehrere Schemata
 
@@ -342,7 +347,7 @@ z.B.: Kann 2. Normalform verletzt sein, wenn ...
 ## 3. Normalform
 > :eight_spoked_asterisk: **Definition:** ***3. Normalform***
 > 
-> Ein Relationenschema ist in der 3. Normalform, **wenn für jede nicht triviale**
+> Ein Relationenschema ist in der 3. Normalform, **wenn für jede nicht-triviale**
 > **funktionale Abhängigkeit** $X \to A$ **gilt:**
 > - $X$ enthält einen Schlüsselkandidaten
 > - oder $A$ ist prim
@@ -357,4 +362,119 @@ z.B.: Kann 2. Normalform verletzt sein, wenn ...
 > - $\underline{LNr} \to LStadt \to LLand$, also indirekt $\underline{LNr} \to LLand$
 
 **Anmerkung zur 3. NF:**
-- Wider Beschränkung auf FDs, bei denen die rechte Seite nicht prim ist
+- Wieder Beschränkung auf FDs, bei denen die rechte Seite nicht prim ist
+- Intuitiv mochte die Definition sagen: Nicht Prime Attribute sind nur von (ganzen) 
+  Schlüsselkandidaten funktional abhängig, also:
+  
+  Für jede FD gilt:
+  - Keine Partiellen FDs von Schlüsselkandidaten → 2. NF ist mit 3. NF impliziert
+  - Keine FDs, bei denen die linke Seite kein Schlüssel ist bzw. Teile enthält, die nicht prim sind
+- Wegen Reflexivitäts- und Verstärkungsaxiom und Allquantoren bei den FDs muss man aber berücksichtigen:
+	- Es gelten immer auch die trivialen FDs 
+	  
+	  (z.B. $A \to A$, für jedes beliebige Attribut $A$. Deshalb Ergänzung der Definition: *"Für jede nicht-triviale FD gilt..."* (in 3.NF))
+	- Ist $S$ Schlüssel, dann gilt immer auch $S' \to R$ für jede Obermenge $S \subseteq S'$, deshalb 
+	  heißt es in der Definition: $X$ **enthält** einen Schlüssel (statt $X$ **ist** ein Schlüssel)
+
+### Transformation in 3. Normalform
+- Attribute, die voll funktional Abhängig vom Schlüssel sind, und die nicht 
+  abhängig von Nicht-Schlüssel-Attributen sind, bleiben in der Ursprungsrelation $R$
+- Für alle Abhängigkeiten $X_{i} \to Y_{i}$ von einem Teil eines Schlüssels $(X \not \subseteq S)$ oder von Nicht-Schlüssel-Attribut:
+  1. Lösche die Attribute $Y_{i}$ aus $R$ 
+  2. Gruppiere die Abhängigkeiten nach gleichen linken Seiten $X_{i}$
+  3. Für jede Gruppe führe eine neue Relation ein mit allen erhaltenen Attributen aus $X_{i}$ und $Y_{i}$
+  4. $X_{i}$ wird Schlüssel in der neuen Relation
+
+![3_DBS_7_3_Normalform_Bsp_2](/home/malte/01_Documents/Vimwiki_md/UNI/SCREENSHOTS/3_DBS_7_3_Normalform_Bsp_2.png)
+
+
+# Verlustlosigkeit der Zerlegung
+:def:dbs:verlustlose_zerlegung:
+> :eight_spoked_asterisk: **Definition:** ***Verlustlose Zerlegung***
+> 
+> Die Zerlegung einer Relation $R$ in die beide Teilrelationen $R_{1}$ und $R_{2}$ ist **verlustlos/verbundtreu**, wenn gilt:
+> - $R = R_{1} \bowtie R_{2}$ 
+> Das zeigt man, wenn mindestens eine der beiden folgenden FDs gilt:
+> - $/R_{1} \cap R_{2} \to R_{1}$
+> - $/R_{1} \cap R_{2} \to R_{2}$
+
+Intuitiv ist klar, dass Verlustlosigkeit von größter
+Wichtigkeit ist, weil andernfalls gar nicht dieselbe
+Information in den Relationenschemata R1 und R2
+
+# Abhänigkeitserhaltung
+:def:dbs:abhängigkeitserhaltung:
+> :eight_spoked_asterisk: **Definition:** ***Abhänigkeitserhaltung***
+> 
+> Die Zerlegung einer Relation $R$ in die beiden Teilrelationen $R_{1}$ und $R_{2}$ ist 
+> **abhängigkeitserhaltend** (oder auch Hüllentreu), wenn gilt:
+> - $F_{R} = (F_{R1} \cup F_{R1})$ bzw $F_{R}^{+} = (F_{R1} \cup F_{R2})^{+}$
+
+D.h jede funktionale Abhhängigkeit soll mindestens eine der Teilrelationen vollständig
+zugeordnet sein (also alle Attribute der linken Seite und das Attribut der rechte Seite müssen in einer der Teilrelationen enthalten sein)
+
+Zwar führt die Verletzung der Abhängigkeitserhaltung
+nicht zu einer Veränderung der speicherbaren Information,
+aber eine „verlorene“ FD ist nicht mehr überprüfbar, ohne
+dass der Join durchgeführt wird
+
+→ Verschlechterung der Situation (Redundanz, Anomalien)
+
+# Synthesealgorithmus für 3NF
+:dbs:def:synthesealgorithmus_3nf:synthesealgorithmus:
+> :eight_spoked_asterisk: **Definition:** ***Synthesealgorithmus für 3NF:***
+> 
+> Der **Synthesealgorithmus** ermittelt zu einem gegebenen Relationenschema $R$ mit funktionalen
+> Abhängigkeiten $F$ eine Zerlegung in Relationen $R_{1}, \dots, R_{n}$ die folgende Kriterien erfüllt:
+> - $R_{1}, \dots, R_{n}$ ist eine verlustlose Zerlegung von $R$
+> - Die Zerlegung ist abhängigkeitserhaltend
+> - Alle $(1 \le i \le n)$ sind in dritter Normalform
+
+**IN SHORT:**
+
+Der Synthese Algorithmis arbeitet in 4 Schritten:
+1. Bestimme die **kanonische Überdeckung** $F_{c}$ zu $F$, d.h. 
+   eine minimale Menge van FDs, die dieselben (partiellen und transitiven) Abhängigkeiten wie $F$ beschreiben
+2. Erzeuge neue Relationenschemata aus $F_{c}$
+3. Rekonstruiere einen Schlüsselkandidaten
+4. Eliminiere überflüssige Relationen
+
+**IN DETAIL:**
+
+**Schritt (1): Bestimme die kanonische Überdekung F_c zu einer gegebenen Menge F von Funktionalen Abhängigkeiten (FDs)**
+1. Führe für jede FD $X \to Y \in F$ die **Linksreduktion** durch, also:
+	1. Überprüfe für alle $A \in X$ ob $A$ überflüssig ist, d.h ob 
+	   
+	   $Y \subseteq AttrHülle(F, X - A)$ gilt 
+	   
+	   → Falls das der Fall ist, ersetzte $X \to Y$ durch $(X - A) \to Y$
+
+2. Führe für jede (verbliebene) FD $X \to Y$ die **Rechtsreduktion** durch, also:
+	1. Überprüfe für alle $B \in Y$, ob 
+	    
+	   $B \subseteq AttrHülle\Big(\big(F - (X \to Y)\big) \cup \big(X \to (Y - B)\big), X \Big)$
+       
+	   gilt. In diesem Fall ist $B$ auf der rechten Seite überflüssig und kann eliminiert werden. 
+	   → Das heißt $X \to Y$ wird ersetzt durch $X \to (Y - B)$
+
+3. Entferne alle FDs der Form $X \to \left\{\right\}$, die in (2.) möglicherweise entstanden sind.
+
+4. Fasse die FDs der Form $X \to Y_{1}, X \to Y_{2}, \dots, X \to Y_{n}$ zusammen, so dass 
+   
+   $X \to \Big(Y_{1} \cup Y_{2} \cup  \dots \cup Y_{n}\Big)$ verbleibt
+	   
+
+**Schritt (2): Für jede FD x -> Y ist Element F_c**
+1. Erzeuge ein Relationenschema $R_{X} := X \cup Y$
+2. Ordne $R_{X}$ die FDs $F_{X} := \Big\{ X' \to Y' \in F_{c} | X' \cup Y' \in R_{x}\Big\}$ zu.
+
+**Schritt (3) Rekonstruiere einen Schlüsselkandidaten**
+1. Falls eines der in Schritt (2) erzeugten Relationenschemata $R_{X}$ einen Schlüsselkandidaten 
+   von $R$ bezüglich $F_{c}$ enthält, sind wir fertig.
+2. Anderenfalls wähle einen Schlüsselkandidaten $S \subseteq R$ aus und definiere folgendes zusätzliches Schema:
+	1. $R_{S} := S$
+	2. $F_{S}:= \left\{\right\}$
+
+**Schritt (4) Eliminiere überflüssige Relationen**
+1. Eliminiere diejenigen Schemata $R_{X}$, die in einem anderen Relationsschema $R_{X}$ enthalten sind, d.h:
+	1. $R_{X} \subseteq R_{X'}$
