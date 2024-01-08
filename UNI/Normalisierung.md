@@ -96,10 +96,9 @@ In allen Tabellen sind die nicht Schlüsselattribute voll funktional abhängig v
 **Beziehungen der Tabellen zu einander:**
 
 ----
-:1:n_beziehung:
 
 **Bestellung** <-> **Kunde**: 
-
+:1:n_beziehung:
 Die `KundenNr` taucht in der Tabelle **Bestellung** auf, sie ist in der Tabelle **Bestellung** also ein Fremdschlüssel. 
 
 Das beschreibt eine **1:N Beziehung**, da ein Kunde mehrere Bestellungen (oder gar keine) haben kann, aber eine Bestellung nur einem Kunden gehören kann. 
@@ -109,10 +108,9 @@ Das beschreibt eine **1:N Beziehung**, da ein Kunde mehrere Bestellungen (oder g
 → So kann in **Bestellung** jede `BestellNr` nur einmal auftauchen, da sie :key: ist und die `KundenNr` mehrmals auftauchen, da sie *Fremdschlüssel* ist.
 
 ----
-:n:m_beziehung:
 
 **Bestellung** <-> **Artikel**:
-
+:n:m_beziehung:
 Es handelt ish um eine **N:M Beziehung**, da eine Bestellung mehrere Artikel enthalten kann und ein Artikel in mehreren Bestellungen enthalten sein kann.
 
 → Wir müssen eine neue Tabelle **BestellungArtikel** erstellen, die die beiden Schlüsselkandidaten `BestellNr` und `ArtNr` enthält.
@@ -126,7 +124,7 @@ Es handelt ish um eine **N:M Beziehung**, da eine Bestellung mehrere Artikel ent
 
 In unserer Tabelle **Kunde** hängt `Ort` transitiv von `Plz` ab, da `Plz` von `KundenNr` abhängt:
 
-	`KundNr` <- `Plz` <- `Ort`
+`KundNr` <- `Plz` <- `Ort`
 
 Deshalb erstellen wir eine weitere Tabelle **Plz**, da `Ort` nicht direkt von `KundenNr` (also :key:) abhängt:
 

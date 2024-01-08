@@ -478,3 +478,126 @@ Der Synthese Algorithmis arbeitet in 4 Schritten:
 **Schritt (4) Eliminiere überflüssige Relationen**
 1. Eliminiere diejenigen Schemata $R_{X}$, die in einem anderen Relationsschema $R_{X}$ enthalten sind, d.h:
 	1. $R_{X} \subseteq R_{X'}$
+
+## Beispiel
+**Einkauf**(Anbieter, Ware :key:, WGruppe, Kunde :key:, KOrt, KLand, Kaufdatum :key:)
+
+Es gelten folgende FDs:
+- `Kunde`, `Ware` -> `KLand`
+- `Kunde`, `WGruppe` -> `Anbieter`
+- `Anbieter` -> `WGruppe`
+- `Ware` -> `WGruppe`
+- `Kunde` -> `KOrt`
+- `KOt` -> `KLand` 
+
+![3_DBS_7_Synthesealgorithmus_Bsp_1](/home/malte/01_Documents/Vimwiki_md/UNI/SCREENSHOTS/3_DBS_7_Synthesealgorithmus_Bsp_1.png)
+
+![3_DBS_7_Synthesealgorithmus_Bsp_2](/home/malte/01_Documents/Vimwiki_md/UNI/SCREENSHOTS/3_DBS_7_Synthesealgorithmus_Bsp_2.png)
+
+
+# Boyce-Codd Normalform (BCNF)
+In der **3. NF** können weiterhin folgende *Abhängigkeiten* auftreten:
+
+**Abhängigkeiten unter Attributen, die Prim sind, aber noch nicht vollständig einen Schlüssel bilden**
+
+Bsp:
+
+**Autoverzeichnis**(`Hersteller` :key:, `HerstellerNr`, `ModelNr` :key:)
+- es gilt 1:1-Beziehung zwischen `Hersteller` und `HerstellerNr`:
+	- `Hersteller` -> `HerstellerNr`
+	- `HerstellerNr` -> `Hersteller`
+- Schlüsselkandidaten sind deshalb:
+	- $\left\{Hersteller, ModelNr\right\}$
+	- $\left\{HerstellerNr, ModelNr\right\}$
+
+Schema befindet sich in 3. NF, da alle Attribute prim sind
+
+Trotzdem können auch hier Anomalien auftreten
+
+:dbs:def:boyce_codd_normalform:bcnf:
+> :eight_spoked_asterisk: **Definition:** ***Boyce-Codd-Normalform***
+> 
+> Ein Schema $R$ ist in Boyce-Codd-Normalform, wenn für alle nicht trivialen
+> Abhängigkeiten $X \to Y$ gilt:
+> - $X$ enthält einen Schlüsselkandidaten von $R$
+
+- Verlustlose Zerlegung ist generell immer möglich
+- Äber die Abhängigkeitserhaltung ist nicht immer möglich
+
+
+# Mehrwertige Abhängigkeit (multi-valued dependency, MVD)
+→ Entstehen wenn mehrere **1:n-Beziehungen** in einer Relation stehen
+(was nicht sein darf (siehe Kapitel 6))
+
+![3_DBS_7_Mehrwertige_Abhängigkeit_Bsp_1](/home/malte/01_Documents/Vimwiki_md/UNI/SCREENSHOTS/3_DBS_7_Mehrwertige_Abhängigkeit_Bsp_1.png)
+
+![3_DBS_7_Mehrwertige_Abhängigkeit_Bsp_2](/home/malte/01_Documents/Vimwiki_md/UNI/SCREENSHOTS/3_DBS_7_Mehrwertige_Abhängigkeit_Bsp_2.png)
+
+:dbs:def:mehrwertige_abhängigkeit:mvd:
+> :eight_spoked_asterisk: **Definition:** ***Mehrwertige Abhängigkeit***
+> 
+> Gegeben $X,Y \subseteq R$ und es sei $Z = R \setminus (X \cup Y)$,
+> d.h der Rest $Y$ ist *mehrwertig abhängig* von $X (X \to \to Y)$, wenn
+> für jede gültige Ausprägung von $R$ gilt:
+> - Für jedes Paar aus Tupeln $t_{1}, t_{2}$ mit $t_{1}.X=t_{2}.X$ aber
+> $t_{1} \not = t_{2}$, existieren die (nicht immer zu $t_{1}$ und $t_{2}$ verschiedenen)
+> Tupel $t_{3}$ und $t_{4}$ mit den Eigenschaften:
+> 	- $t_{1}.X = t_{2}.X = t_{3}.X = t_{4}.X$
+> 	- $t_{3}.Y = t_{1}.Y$
+> 	- $t_{3}.Z = t_{2}.Z$
+> 	- $t_{4}.Y = t_{2}.Y$
+> 	- $t_{4}.Z = t_{1}.Z$
+
+D.h jedem $X$ ist eine **Menge von Y Werten** zugeordnet
+
+Jede FD ist auch eine MVD
+
+![3_DBS_7_Mehrwertige_Abhängigkeit_Bsp_3](/home/malte/01_Documents/Vimwiki_md/UNI/SCREENSHOTS/3_DBS_7_Mehrwertige_Abhängigkeit_Bsp_3.png)
+
+![3_DBS_7_Mehrwertige_Abhängigkeit_Bsp_4](/home/malte/01_Documents/Vimwiki_md/UNI/SCREENSHOTS/3_DBS_7_Mehrwertige_Abhängigkeit_Bsp_4.png)
+
+
+## Verlustlose Zerlegung MVD
+Ein Relationenschema $R$ mit einer Menge $D$ von zugeordneten 
+funktionalen mehrwertigen Abhängigkeiten (MVDs) kann genau dann
+verlustlos in die beiden Schemata $R_{1}$ und $R_{2}$ zerlegt werden,
+wenn gilt:
+- $R = R_{1} \cup R_{2}$
+- Mind. eine von zwei MVDs gilt:
+	1. $R_{1} \cap R_{2} \to \to R_{1}$ oder
+	2. $R_{1} \cap R_{2} \to \to R_{2}$ 
+
+
+## Triviale MVD und 4. Normalform
+:def:dbs:triviale_mvd:
+> :eight_spoked_asterisk: **Definition:** ***Triviale MVD***
+> 
+> Eine MVD $X \to\to Y$ bezogen auf $X \cup Y \subseteq R$ ist
+> **trivial**, wenn jede mögliche Ausprägung $r$ von $R$ diese MVD erfüllt.
+> Man kann zeigen, dass $X \to \to Y$ trivial ost, gdw:
+> - $Y \subseteq X$ oder
+> - $Y = R - X$
+
+Eine Relation $R$ mit zugeordneter Menge $F$ von FDs und MVDs ist in der **4. Normalform**, wenn
+für jede MVD $X \to \to Y \in F^{+}$ eine der folgenden Bedingungen gilt:
+- Die MVD ist trivial oder
+- $X$ ist Superschlüssel von $R$
+
+Bsp:
+
+![3_DBS_7_4_Normalform_Bsp_1](/home/malte/01_Documents/Vimwiki_md/UNI/SCREENSHOTS/3_DBS_7_4_Normalform_Bsp_1.png)
+
+
+# Zusammenfassung
+- 1. Normalform:
+  Alle Attribute sind atomar
+- 2. Normalform:
+  Keine FD eines Nicht-Schlüssel-Attributs von **Teil** eines Schlüssels
+- 3. Normalform:
+  Zusätzlich keine nichttriviale funktionale Abhängigkeit 
+  eines Nicht-Schlüssel-AttributsA von Nicht-Schlüssel-Attributen
+- Boyce-Codd-Normalform: 
+  Zusätzlich keine nichttriviale funktionale Abhängigkeit unter den Schlüssel-Attributen
+- 4. Normalform: 
+  Keine Redundanz durch MVDs
+  
