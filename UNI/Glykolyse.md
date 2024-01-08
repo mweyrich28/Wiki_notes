@@ -1,16 +1,21 @@
 ----
 
-:glycolyse:biochemie:
+:glykolyse:biochemie:
 
 ----
 
 # Glykolyse
+
+→ Reaktion liefert wenig `ATP`
+
+→ `NAD+` muss aus `NADH` regeneriert werden, damit die Reaktion weiterlaufen kann
+
 ## Abfolge der 10 Reaktionen
 `Glucose`
 
    ↓
    
-   ↓  **1. Hexokinase (ATP → ADP)**
+   ↓  1. Hexokinase (ATP → ADP)
    
    ↓     (Aktivierung der Glucose durch Einbau von Phosphat)
    
@@ -20,7 +25,7 @@
 
    ↓
    
-   ↓   **2. Glucosephosphat-Isomerase**
+   ↓   2. Glucosephosphat-Isomerase
    
    ↓      (Isomerisierung zu Fructose 5 Ring)
    
@@ -30,7 +35,7 @@
 
    ↓
    
-   ↓  **3. Fructosephosphatkinase(ATP → ADP)**
+   ↓  3. [Phosphofructokinase](Phosphofructokinase) (ATP → ADP)
    
    ↓     (Einbau von weiterem Phosphat) → Wichtigster Kontrollschritt
    
@@ -40,11 +45,11 @@
 
    ↓
    
-   ↓  **4. Aldolase**
+   ↓  4. Aldolase
    
    ↓     (Spaltung in $C_{3}$: GAP ist erwünscht aber DHAP ist ein Nebenprodukt, dass erst wieder umgewandelt werden muss (TIM))
    
-   ↓-------------
+   ↓  → → → → → ↓
    
    ↓            ↓
    
@@ -52,7 +57,7 @@
   
    ↓            ↓ 
    
-   ↓            ↓   **5. Triosephosphatisomerase (TIM)**
+   ↓            ↓   5. [Triosephosphatisomerase](Triosephosphatisomerase) (TIM)
    
    ↓            ↓      (Wandelt DHAP → GAP um und verhindert somit unerwünschte Nebenreaktion)
    
@@ -60,13 +65,13 @@
    
    ↓          `GAP`
    
-   ↓←-----------
+   ↓ ← ← ← ← ← ↓
    
    ↓
    
    ↓
    
-   ↓ **6. Glycerinaldehyd-3-P-dehydrogenase**
+   ↓ 6. Glycerinaldehyd-3-P-dehydrogenase
    
    ↓    (Einbau von $PO_{4}^{2-}$)
    
@@ -76,7 +81,7 @@
 
    ↓
    
-   ↓ **7. Phosphoglycerat-Kinase**
+   ↓ 7. Phosphoglycerat-Kinase
    
    ↓    (Hier wird eine **energiereiche Bindung** aufgebrochen und es entsteht das erste ATP)
    
@@ -86,7 +91,7 @@
 
    ↓
    
-   ↓ **8. Phosphoglycerat-Mutase**
+   ↓ 8. Phosphoglycerat-Mutase
    
    ↓    (Entstehung einer 2. **energiereichen Bindung**)
    
@@ -96,7 +101,7 @@
 
    ↓
    
-   ↓ **9. Enolase**
+   ↓ 9. Enolase -> Bildung eines energiereichen Zwischenproduktes
    
    ↓    (Abspaltung von $H_{2}O$)
    
@@ -106,15 +111,48 @@
 
    ↓
    
-   ↓ **10.Pyruvatkinase**
-   
-   ↓    (Entstehung des 2. ATPs)
+   ↓ 10. [Pyruvatkinase](Pyruvatkinase) (Entstehung des 2. ATPs)
    
    ↓
    
-`Pyruvat` → Gluconeogenese/Citratzyklus
+`Pyruvat` → [Gluconeogenese](Gluconeogenese) oder [Citratzyklus](Citratzyklus)
 
 
 ## Edukte und Produkte
 
 Glucose + 2ADP + 2 $P_{i}$ + $NAD^{+}$ → 2Pyruvat + 2ATP + 2NADH + 2$H^{+}$ + 2$H^{2}O$
+
+
+## Anaerobe Glykolyse
+### Ethanolische Gärung 
+`Pyruvat` 
+
+↓
+
+↓ → `CO2`
+
+`Acetaldehyd`
+
+↓
+
+↓ ← `NADH`
+
+↓ → `NAD+`
+
+↓
+
+`Ethanol`
+
+### Lactatgärung (Milchsäuregärung)
+`Pyruvat`
+
+↓ (Lactatdehydrogenase)
+
+↓ ← `NADH`
+
+↓ → `NAD+`
+
+↓
+
+`Lactat`
+

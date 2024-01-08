@@ -6,7 +6,9 @@
 [Kapitel_5 - Sortieren, Gruppieren und Views](3_Datenbanksysteme_Kapitel_5)
 [Kapitel_6 - ER Modell](3_Datenbanksysteme_Kapitel_6)
 [Kapitel_7 - Normalformeln](3_Datenbanksysteme_Kapitel_7)
-[Kapitel 8](3_Datenbanksysteme_Kapitel_8)
+[Kapitel 8 - Physische Datenorganisation](3_Datenbanksysteme_Kapitel_8)
+[Kapitel 9 - Relationale Anfragebearbeitung](3_Datenbanksysteme_Kapitel_9)
+
 
 # SQL Befehle
 [SQL](SQL)
